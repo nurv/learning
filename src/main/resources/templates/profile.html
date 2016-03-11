@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="fenixedu-learning">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Coffee Management</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/canvas.css" rel="stylesheet" />
+    <link href="/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-general navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav navbar-breadcrumb">
+                <ul class="nav navbar-nav navbar-floating-items">
+                    <li class="navbar-brand hidden-xs">
+                        <a href="/">
+                            FenixEdu Learning
+                        </a>
+                    </li>
+                    <li class="navbar-userarea">
+                        <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a ng-click="logout()" role="button">Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container" ng-controller="own-timeline">
+    <h1>{{ username }}</h1>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <div ng-if="{}">
+                <p ng-if="profile.isYou">Its you!</p>
+
+                <button ng-click="follow()" ng-if="!profile.isYou && !profile.isFollowing" class="btn btn-primary">Follow</button>
+
+                <button ng-click="unfollow()" ng-if="!profile.isYou && profile.isFollowing && !profile.isFriend" class="btn btn-default">Unfollow</button>
+
+                <button ng-click="unfollow()" ng-if="!profile.isYou && profile.isFollowing && profile.isFriend" class="btn btn-default">Unfriend</button>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="timeline">
+                <div ng-repeat="post in timeline">
+                    <div class="thumbnail">
+                        <div>
+                            <b><a href="{! post.creator.url !}">{! post.creator.userId !}</a></b>
+                        </div>
+                        <p>{! post.content !}</p>
+                    </div>
+                </div>
+                <p>
+                    Fim da linha
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/angular.min.js"></script>
+
+<script>
+    var app = angular.module('fenixedu-learning', []).config(function($interpolateProvider){
+        $interpolateProvider.startSymbol('{!').endSymbol('!}');
+    });
+
+
+    app.controller('own-timeline', ['$scope', '$http', function ($scope, $http) {
+
+        $scope.profile = {};
+        $scope.timeline = [];
+
+        $scope.updateProfile = function(){
+            var req = {
+                method: 'GET',
+                url: '/api/profile/{{user}}',
+            }
+            $http(req).then(function(res){
+                $scope.profile = res.data;
+            }, function(){
+
+            });
+        };
+
+        $scope.updateProfile();
+
+        $scope.follow = function(){
+            var req = {
+                method: 'POST',
+                url: '/api/friends/follow',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                transformRequest: function(obj) {
+                    var str = [];
+                    for(var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data:{ user : $scope.profile.userId}
+            }
+            $http(req).then(function(res){
+                $scope.updateProfile();
+            }, function(){
+
+            });
+        }
+
+        $scope.unfollow = function(){
+            var req = {
+                method: 'POST',
+                url: '/api/friends/unfollow',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                transformRequest: function(obj) {
+                    var str = [];
+                    for(var p in obj)
+                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
+                data:{ user : $scope.profile.userId}
+            }
+            $http(req).then(function(res){
+                $scope.updateProfile();
+            }, function(){
+
+            });
+        }
+
+        $scope.updateFeed = function(){
+            var req = {
+                method: 'GET',
+                url: '/api/timeline/own/{{user}}',
+            }
+            $http(req).then(function(res){
+                $scope.timeline = res.data;
+            }, function(){
+
+            });
+        }
+        $scope.updateFeed();
+    }]);
+</script>
+
+</body>
+</html>

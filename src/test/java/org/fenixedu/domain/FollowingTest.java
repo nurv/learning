@@ -1,12 +1,12 @@
 package org.fenixedu.domain;
 
 import org.fenixedu.learning.FenixeduLearningApplication;
-import org.fenixedu.learning.domain.Following;
-import org.fenixedu.learning.domain.FollowingRepository;
-import org.fenixedu.learning.domain.Profile;
-import org.fenixedu.learning.domain.ProfileRepository;
-import org.fenixedu.learning.services.FollowingService;
-import org.fenixedu.learning.services.ProfileService;
+import org.fenixedu.learning.core.domain.Following;
+import org.fenixedu.learning.core.domain.FollowingRepository;
+import org.fenixedu.learning.core.domain.Profile;
+import org.fenixedu.learning.core.domain.ProfileRepository;
+import org.fenixedu.learning.core.services.FollowingService;
+import org.fenixedu.learning.core.services.ProfileService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

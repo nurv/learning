@@ -1,4 +1,4 @@
-package org.fenixedu.learning.domain;
+package org.fenixedu.learning.core.domain;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -6,7 +6,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by nurv on 11/03/16.
@@ -19,7 +20,13 @@ public class Group extends AbstractPersistable<Long> {
     }
 
     @ManyToMany
-    private List<Profile> followers;
+    private Set<Profile> followers = new HashSet<>();
+
+    @ManyToMany
+    private Set<Profile> admins = new HashSet<>();
+
+    @ManyToMany
+    private Set<Profile> users = new HashSet<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     private Timeline timeline;
@@ -34,5 +41,17 @@ public class Group extends AbstractPersistable<Long> {
 
     public Timeline getTimeline() {
         return timeline;
+    }
+
+    public Set<Profile> getFollowers() {
+        return followers;
+    }
+
+    public Set<Profile> getAdmins() {
+        return admins;
+    }
+
+    public Set<Profile> getUsers() {
+        return users;
     }
 }

@@ -1,11 +1,11 @@
 package org.fenixedu.domain;
 
 import org.fenixedu.learning.FenixeduLearningApplication;
-import org.fenixedu.learning.domain.*;
-import org.fenixedu.learning.services.FollowingService;
-import org.fenixedu.learning.services.PostService;
-import org.fenixedu.learning.services.TimelineService;
-import org.junit.After;
+import org.fenixedu.learning.core.domain.*;
+import org.fenixedu.learning.domain.core.*;
+import org.fenixedu.learning.core.services.FollowingService;
+import org.fenixedu.learning.core.services.PostService;
+import org.fenixedu.learning.core.services.TimelineService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,8 +1,8 @@
-package org.fenixedu.learning.api;
+package org.fenixedu.learning.core.api;
 
-import org.fenixedu.learning.domain.Profile;
-import org.fenixedu.learning.domain.ProfileRepository;
-import org.fenixedu.learning.services.FollowingService;
+import org.fenixedu.learning.core.domain.Profile;
+import org.fenixedu.learning.core.domain.ProfileRepository;
+import org.fenixedu.learning.core.services.FollowingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

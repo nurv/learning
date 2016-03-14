@@ -1,4 +1,4 @@
-package org.fenixedu.learning.domain;
+package org.fenixedu.learning.core.domain;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

@@ -1,9 +1,9 @@
-package org.fenixedu.learning.services;
+package org.fenixedu.learning.core.services;
 
 import com.google.common.collect.Sets;
-import org.fenixedu.learning.domain.Following;
-import org.fenixedu.learning.domain.FollowingRepository;
-import org.fenixedu.learning.domain.Profile;
+import org.fenixedu.learning.core.domain.Following;
+import org.fenixedu.learning.core.domain.FollowingRepository;
+import org.fenixedu.learning.core.domain.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

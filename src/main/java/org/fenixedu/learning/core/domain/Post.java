@@ -1,4 +1,4 @@
-package org.fenixedu.learning.domain;
+package org.fenixedu.learning.core.domain;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -17,11 +17,27 @@ public class Post extends AbstractPersistable<Long> {
     @ManyToOne
     private Profile creator;
 
+    @ManyToOne
+    private Page page;
+
+    @ManyToOne
+    private Group group;
+
     protected Post(){}
 
     public Post(Profile profile, String content) {
         this.content = content;
         this.creator = profile;
+    }
+
+    public Post(Profile profile, String content, Page page) {
+        this(profile,content);
+        this.page = page;
+    }
+
+    public Post(Profile profile, String content, Group group) {
+        this(profile,content);
+        this.group = group;
     }
 
     private String content;
@@ -36,5 +52,13 @@ public class Post extends AbstractPersistable<Long> {
 
     public Profile getCreator() {
         return creator;
+    }
+
+    public Page getPage() {
+        return page;
+    }
+
+    public Group getGroup() {
+        return group;
     }
 }

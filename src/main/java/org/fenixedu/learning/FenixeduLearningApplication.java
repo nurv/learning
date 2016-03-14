@@ -1,15 +1,12 @@
 package org.fenixedu.learning;
 
-import org.fenixedu.learning.domain.*;
-import org.fenixedu.learning.services.PostService;
-import org.h2.server.web.WebServlet;
-import org.h2.tools.Server;
+import org.fenixedu.learning.core.domain.Profile;
+import org.fenixedu.learning.core.domain.ProfileRepository;
+import org.fenixedu.learning.core.services.PostService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.embedded.ServletRegistrationBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 
 @SpringBootApplication

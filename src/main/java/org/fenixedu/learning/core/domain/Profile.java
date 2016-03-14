@@ -1,11 +1,10 @@
-package org.fenixedu.learning.domain;
+package org.fenixedu.learning.core.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.util.ClassUtils;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by nurv on 07/03/16.

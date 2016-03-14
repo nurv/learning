@@ -1,6 +1,5 @@
-package org.fenixedu.learning.services;
+package org.fenixedu.learning.core.services;
 
-import org.fenixedu.learning.domain.Profile;
 import org.springframework.stereotype.Service;
 
 /**
